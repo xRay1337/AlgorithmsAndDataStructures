@@ -2,11 +2,11 @@
 {
     static public class Sorter
     {
-
         #region QuickSort
-        public static void QuickSort(int[] array) => QuickSort(array, 0, array.Length - 1);
+        public static void QuickSort<T>(T[] array) where T : IComparable<T>
+            => QuickSort(array, 0, array.Length - 1);
 
-        private static void QuickSort(int[] array, int start, int end)
+        private static void QuickSort<T>(T[] array, int start, int end) where T : IComparable<T>
         {
             if (start < end)
             {
@@ -17,13 +17,13 @@
             }
         }
 
-        private static int Partition(int[] array, int start, int end)
+        private static int Partition<T>(T[] array, int start, int end) where T : IComparable<T>
         {
             int position = start;
 
             for (int i = start; i < end; i++)
             {
-                if (array[i] < array[end])
+                if (array[end].CompareTo(array[i]) > 0)
                 {
                     Swap(ref array[i], ref array[position]);
 
@@ -38,17 +38,16 @@
         #endregion
 
         #region BubbleSort
-        public static int[] BubbleSort(int[] array)
+        public static void BubbleSort<T>(T[] array) where T : IComparable<T>
         {
             for (int i = array.Length - 1; i > 0; i--)
                 for (int j = 1; j < array.Length; j++)
-                    if (array[j] < array[j - 1])
+                    if (array[j - 1].CompareTo(array[j]) > 0)
                         Swap(ref array[j], ref array[j - 1]);
-
-            return array;
         }
         #endregion
 
-        private static void Swap(ref int value1, ref int value2) => (value1, value2) = (value2, value1);
+        private static void Swap<T>(ref T value1, ref T value2)
+            => (value1, value2) = (value2, value1);
     }
 }
