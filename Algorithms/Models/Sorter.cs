@@ -2,6 +2,20 @@
 {
     static public class Sorter
     {
+        #region SelectionSort
+        public static void SelectionSort<T>(T[] array) where T : IComparable<T>
+        {
+            for (int i = 0, j = 0, minValueId = 0; i < array.Length; i++, minValueId = i)
+            {
+                for (j = i; j < array.Length; j++)
+                    if (array[minValueId].CompareTo(array[j]) > 0)
+                        minValueId = j;
+
+                Swap(ref array[i], ref array[minValueId]);
+            }
+        }
+        #endregion
+
         #region QuickSort
         public static void QuickSort<T>(T[] array) where T : IComparable<T>
             => QuickSort(array, 0, array.Length - 1);
