@@ -5,11 +5,15 @@
         #region SelectionSort
         public static void SelectionSort<T>(T[] array) where T : IComparable<T>
         {
-            for (int i = 0, j = 0, minValueId = 0; i < array.Length; i++, minValueId = i)
+            for (int i = 0, j, minValueId = 0; i < array.Length; i++, minValueId = i)
             {
                 for (j = i; j < array.Length; j++)
+                {
                     if (array[minValueId].CompareTo(array[j]) > 0)
+                    {
                         minValueId = j;
+                    }
+                }
 
                 Swap(ref array[i], ref array[minValueId]);
             }
@@ -55,9 +59,15 @@
         public static void BubbleSort<T>(T[] array) where T : IComparable<T>
         {
             for (int i = array.Length - 1; i > 0; i--)
+            {
                 for (int j = 1; j < array.Length; j++)
+                {
                     if (array[j - 1].CompareTo(array[j]) > 0)
+                    {
                         Swap(ref array[j], ref array[j - 1]);
+                    }
+                }
+            }
         }
         #endregion
 
