@@ -2,15 +2,29 @@
 {
     public static class Searcher
     {
-        public static int LinearSearch<T>(T[] array, T item) where T : IComparable<T>
+        public static int InterpolationSearch(int[] array, int item)
         {
+            int left = 0;
+            int right = array.Length - 1;
+            int pos;
             int index = -1;
 
-            for (int i = 0; i < array.Length; i++)
+            while (left <= right)
             {
-                if (array[i].CompareTo(item) == 0)
+                pos = left + ((item - array[left]) * (right - left) / (array[right] - array[left]));
+
+                if (array[pos] > item)
                 {
-                    index = i;
+                    right = pos - 1;
+                }
+                else if (array[pos] < item)
+                {
+                    left = pos + 1;
+                }
+                else
+                {
+                    index = pos;
+                    break;
                 }
             }
 
@@ -21,26 +35,40 @@
         {
             int left = 0;
             int right = array.Length - 1;
-            int mid;
+            int pos;
             int index = -1;
 
             while (left <= right)
             {
-                mid = (right + left) / 2;
+                pos = (right + left) / 2;
 
-                if (array[mid].CompareTo(item) == 0)
+                if (array[pos].CompareTo(item) > 0)
                 {
-                    index = mid;
-                    break;
+                    right = pos - 1;
                 }
-
-                if (array[mid].CompareTo(item) > 0)
+                else if (array[pos].CompareTo(item) < 0)
                 {
-                    right = mid - 1;
+                    left = pos + 1;
                 }
                 else
                 {
-                    left = mid + 1;
+                    index = pos;
+                    break;
+                }
+            }
+
+            return index;
+        }
+
+        public static int LinearSearch<T>(T[] array, T item) where T : IComparable<T>
+        {
+            int index = -1;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i].CompareTo(item) == 0)
+                {
+                    index = i;
                 }
             }
 
