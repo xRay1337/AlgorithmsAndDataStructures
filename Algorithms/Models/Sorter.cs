@@ -2,6 +2,29 @@
 {
     static public class Sorter
     {
+        #region CountingSort
+        public static void CountingSort(int[] array, int maxValue = 256)
+        {
+            int[] counterArray = new int[maxValue];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                counterArray[array[i]]++;
+            }
+
+            for (int j = 0, k = 0; j < maxValue; j++)
+            {
+                if (counterArray[j] > 0)
+                {
+                    array[k] = j;
+                    counterArray[j]--;
+                    j--;
+                    k++;
+                }
+            }
+        }
+        #endregion
+
         #region InsertionSort
         public static void InsertionSort<T>(T[] array) where T : IComparable<T>
         {

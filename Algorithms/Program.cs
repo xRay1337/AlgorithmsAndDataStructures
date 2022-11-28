@@ -1,15 +1,20 @@
 ﻿using Algorithms.Models;
-                                                //0, 1, 2, 3, 4, 5, 6, 7
+//0, 1, 2, 3, 4, 5, 6, 7
 int[] intArray = { 4, 1, 2, 7, 22, 5, 3, 3 };   //1, 2, 3, 3, 4, 5, 7, 22
 string[] strArray = { "Оксана", "Александр", "София", "Виталий" };
 
+int[] byteArray = { 1, 5, 3, 7, 5, 128, 23, 23, 97, 255, 23, 54, 78, 22 };
+Sorter.CountingSort(byteArray);
+Console.WriteLine(ArrayToString(byteArray));
+
+
 var srcArray = intArray;
 
-Console.WriteLine(ArrayToString(srcArray));
+//Console.WriteLine(ArrayToString(srcArray));
 
-Sorter.InsertionSort(srcArray);
+//Sorter.InsertionSort(srcArray);
 
-Console.WriteLine(ArrayToString(srcArray));
+//Console.WriteLine(ArrayToString(srcArray));
 
 //int i = Searcher.BinarySearch(intArray, 4);
 
