@@ -2,6 +2,23 @@
 {
     static public class Sorter
     {
+        #region InsertionSort
+        public static void InsertionSort<T>(T[] array) where T : IComparable<T>
+        {
+            T key;
+
+            for (int i = 1, j; i < array.Length; i++)
+            {
+                key = array[i];
+
+                for (j = i - 1; j >= 0 && array[j].CompareTo(key) > 0; j--)
+                {
+                    Swap(ref array[j], ref array[j + 1]);
+                }
+            }
+        }
+        #endregion
+
         #region SelectionSort
         public static void SelectionSort<T>(T[] array) where T : IComparable<T>
         {
@@ -24,24 +41,24 @@
         public static void QuickSort<T>(T[] array) where T : IComparable<T>
             => QuickSort(array, 0, array.Length - 1);
 
-        private static void QuickSort<T>(T[] array, int start, int end) where T : IComparable<T>
+        private static void QuickSort<T>(T[] array, int left, int right) where T : IComparable<T>
         {
-            if (start < end)
+            if (left < right)
             {
-                int pivot = Partition(array, start, end);
+                int pivot = Partition(array, left, right);
 
-                QuickSort(array, start, pivot - 1);
-                QuickSort(array, pivot + 1, end);
+                QuickSort(array, left, pivot - 1);
+                QuickSort(array, pivot + 1, right);
             }
         }
 
-        private static int Partition<T>(T[] array, int start, int end) where T : IComparable<T>
+        private static int Partition<T>(T[] array, int left, int right) where T : IComparable<T>
         {
-            int position = start;
+            int position = left;
 
-            for (int i = start; i < end; i++)
+            for (int i = left; i < right; i++)
             {
-                if (array[end].CompareTo(array[i]) > 0)
+                if (array[right].CompareTo(array[i]) > 0)
                 {
                     Swap(ref array[i], ref array[position]);
 
@@ -49,7 +66,7 @@
                 }
             }
 
-            Swap(ref array[end], ref array[position]);
+            Swap(ref array[right], ref array[position]);
 
             return position;
         }
