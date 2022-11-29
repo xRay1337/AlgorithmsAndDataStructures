@@ -2,6 +2,20 @@
 {
     static public class Sorter
     {
+        #region GnomeSort
+        public static void GnomeSort<T>(T[] array) where T : IComparable<T>
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (i > 0 && array[i - 1].CompareTo(array[i]) > 0)
+                {
+                    Swap(ref array[i - 1], ref array[i]);
+                    i--;
+                }
+            }
+        }
+        #endregion
+
         #region CountingSort
         public static void CountingSort(int[] array, int maxValue = 256)
         {
