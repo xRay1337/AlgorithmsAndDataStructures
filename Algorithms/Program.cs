@@ -12,7 +12,7 @@ var srcArray = intArray;
 
 Console.WriteLine(ArrayToString(srcArray));
 
-Sorter.GnomeSort(srcArray);
+Sorter.HeapSort(srcArray);
 
 Console.WriteLine(ArrayToString(srcArray));
 

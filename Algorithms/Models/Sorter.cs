@@ -2,6 +2,34 @@
 {
     static public class Sorter
     {
+        #region HeapSort
+
+        public static void HeapSort(int[] array)
+        {
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                MakeHeap(array, i);
+                Swap(ref array[0], ref array[i]);
+            }
+        }
+
+        private static void MakeHeap(int[] array, int arrayLength)
+        {
+            for (int i = arrayLength / 2; i >= 0; i--)
+            {
+                if (2 * i + 1 <= arrayLength && array[i] < array[2 * i + 1])
+                {
+                    Swap(ref array[i], ref array[2 * i + 1]);
+                }
+
+                if (2 * i + 2 <= arrayLength && array[i] < array[2 * i + 2])
+                {
+                    Swap(ref array[i], ref array[2 * i + 2]);
+                }
+            }
+        }
+        #endregion
+
         #region GnomeSort
         public static void GnomeSort<T>(T[] array) where T : IComparable<T>
         {
