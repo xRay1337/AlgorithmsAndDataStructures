@@ -3,7 +3,6 @@
     static public class Sorter
     {
         #region HeapSort
-
         public static void HeapSort(int[] array)
         {
             for (int i = array.Length - 1; i > 0; i--)
@@ -17,14 +16,12 @@
         {
             for (int i = arrayLength / 2; i >= 0; i--)
             {
-                if (2 * i + 1 <= arrayLength && array[i] < array[2 * i + 1])
+                for (int childId = 1; childId < 3; childId++)
                 {
-                    Swap(ref array[i], ref array[2 * i + 1]);
-                }
-
-                if (2 * i + 2 <= arrayLength && array[i] < array[2 * i + 2])
-                {
-                    Swap(ref array[i], ref array[2 * i + 2]);
+                    if (2 * i + childId <= arrayLength && array[i] < array[2 * i + childId])
+                    {
+                        Swap(ref array[i], ref array[2 * i + childId]);
+                    }
                 }
             }
         }
