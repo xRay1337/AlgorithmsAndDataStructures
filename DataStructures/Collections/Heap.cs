@@ -155,6 +155,6 @@ namespace DataStructures.Collections
         public override int GetHashCode() => _data.GetHashCode();
 
         public override bool Equals(object? obj)
-            => _data.ToArray().Equals(((Heap<T>)obj)?.ToArray());
+            => _data.ToArray().Equals((obj as Heap<T>)?.ToArray());
     }
 }

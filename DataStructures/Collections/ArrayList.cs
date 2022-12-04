@@ -235,7 +235,7 @@ namespace DataStructures.Collections
             return result.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(obj, this))
             {
