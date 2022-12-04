@@ -1,30 +1,59 @@
-﻿namespace Algorithms.Models
+﻿using System.Xml.Linq;
+
+namespace Algorithms.Models
 {
     static public class Sorter
     {
         #region HeapSort
-        public static void HeapSort(int[] array)
-        {
-            for (int i = array.Length - 1; i > 0; i--)
-            {
-                MakeHeap(array, i);
-                Swap(ref array[0], ref array[i]);
-            }
-        }
+        //public static void HeapSort(int[] array)
+        //{
+        //    for (int i = array.Length - 1; i > 0; i--)
+        //    {
+        //        Console.WriteLine(string.Join(", ", array));
+        //        MakeHeap(array, i);
+        //        Swap(ref array[0], ref array[i]);
+        //    }
+        //}
 
-        private static void MakeHeap(int[] array, int arrayLength)
-        {
-            for (int i = arrayLength / 2; i >= 0; i--)
-            {
-                for (int childId = 1; childId < 3; childId++)
-                {
-                    if (2 * i + childId <= arrayLength && array[i] < array[2 * i + childId])
-                    {
-                        Swap(ref array[i], ref array[2 * i + childId]);
-                    }
-                }
-            }
-        }
+        //private static void MakeHeap(int[] array, int arrayLength)
+        //{
+        //    for (int i = 0, childId1, childId2, maxChildId = 0; i < arrayLength;)
+        //    {
+        //        childId1 = 2 * i + 1;
+        //        childId2 = 2 * i + 2;
+
+        //        if (childId2 < arrayLength)
+        //        {
+        //            maxChildId = array[childId1] > array[childId2] ? childId1 : childId2;
+        //        }
+        //        else if (childId1 < arrayLength)
+        //        {
+        //            maxChildId = childId1;
+        //        }
+
+        //        if (array[maxChildId] > array[i])
+        //        {
+        //            Swap(ref array[maxChildId], ref array[i]);
+        //            i = maxChildId;
+        //        }
+        //        else
+        //        {
+        //            i++;
+        //        }
+        //    }
+
+
+            //for (int i = arrayLength / 2; i >= 0; i--)
+            //{
+            //    for (int childId = 1; childId < 3; childId++)
+            //    {
+            //        if (2 * i + childId <= arrayLength && array[i] < array[2 * i + childId])
+            //        {
+            //            Swap(ref array[i], ref array[2 * i + childId]);
+            //        }
+            //    }
+            //}
+        //}
         #endregion
 
         #region GnomeSort
