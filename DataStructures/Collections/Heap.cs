@@ -5,9 +5,9 @@ namespace DataStructures.Collections
 {
     public class Heap<T> : IEnumerable<T> where T : IComparable<T>
     {
-        private ArrayList<T> _data = new();
+        private ArrayList<T> _data;
 
-        private int _modCount = 0;
+        private int _modCount;
 
         private OrderBy _sort;
 
@@ -16,12 +16,17 @@ namespace DataStructures.Collections
             get => _sort;
             set
             {
-                if (_sort != value)
+                if (_sort != value && Count > 1)
                 {
+                    _modCount++;
                     _sort = value;
                     var prevData = _data.Reverse().ToArray();
                     Clear();
                     AddRangeItems(prevData);
+                }
+                else
+                {
+                    _sort = value;
                 }
             }
         }
@@ -29,13 +34,22 @@ namespace DataStructures.Collections
         public int Count => _data.Count;
 
         public Heap(OrderBy sort = OrderBy.Desc)
-            => Sort = sort;
+        {
+            _data = new();
+            _modCount = 0;
+            Sort = sort;
+        }
 
         public Heap(T item, OrderBy sort = OrderBy.Desc) : this(sort)
             => _data.Add(item);
 
         public Heap(IEnumerable<T> rangeItems, OrderBy sort = OrderBy.Desc) : this(sort)
-            => AddRangeItems(rangeItems);
+        {
+            _data = new(rangeItems.Count());
+            AddRangeItems(rangeItems);
+        }
+
+        public Heap(Heap<T> heap) : this(heap.ToArray(), heap.Sort){}
 
         public void AddItem(T item)
         {
@@ -137,5 +151,10 @@ namespace DataStructures.Collections
         public IEnumerator GetEnumerator() => GetEnumerator();
 
         public override string ToString() => string.Join(", ", _data);
+
+        public override int GetHashCode() => _data.GetHashCode();
+
+        public override bool Equals(object? obj)
+            => _data.ToArray().Equals(((Heap<T>)obj)?.ToArray());
     }
 }

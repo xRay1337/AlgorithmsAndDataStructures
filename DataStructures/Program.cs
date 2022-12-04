@@ -11,26 +11,31 @@ heap.AddItem(38);
 
 int heapCount = heap.Count;
 
-Console.WriteLine($"heapCount = {heapCount}. HeapBeforeLoop = {heap}");
+var heap2 = new Heap<int>(heap);
+heap2.Sort = OrderBy.Asc;
+
+Console.WriteLine($"Heap1 = {heap}");
+Console.WriteLine($"Heap2 = {heap2}");
 
 Console.WriteLine();
 
+//Console.WriteLine($"heapCount = {heapCount}. HeapBeforeLoop = {heap}");
 
-for (int i = 0; i < heapCount; i++)
-{
-    Console.WriteLine($"ExtractedRoot = {heap.ExtractRoot()}");
+//for (int i = 0; i < heapCount; i++)
+//{
+//    Console.WriteLine($"ExtractedRoot = {heap.ExtractRoot()}");
 
-    Console.WriteLine($"i = {i}. HeapNow = {heap}");
+//    Console.WriteLine($"i = {i}. HeapNow = {heap}");
 
-    Console.WriteLine();
+//    Console.WriteLine();
 
-    if (heap.Count <= heapCount / 2 && heap.Sort == OrderBy.Desc)
-    {
-        Console.WriteLine("-------Change sort-------");
-        Console.WriteLine();
-        heap.Sort = OrderBy.Asc;
-    }
-}
+//    if (heap.Count <= heapCount / 2 && heap.Sort == OrderBy.Desc)
+//    {
+//        Console.WriteLine("-------Change sort-------");
+//        Console.WriteLine();
+//        heap.Sort = OrderBy.Asc;
+//    }
+//}
 
 
 //Console.WriteLine(heap);
