@@ -7,6 +7,7 @@ var heap = new Heap<int>(array);
 
 var heap2 = new Heap<int>(array.Reverse());
 
+heap2.AddItem(1);
 Console.WriteLine(heap);
 Console.WriteLine(heap2);
 
