@@ -11,7 +11,7 @@ heap2.AddItem(1);
 Console.WriteLine(heap);
 Console.WriteLine(heap2);
 
-Console.WriteLine(heap.Equals(heap2));
+Console.WriteLine(heap.Equals(new object()));
 
 //heap.AddItem(37);
 //heap.AddItem(100);

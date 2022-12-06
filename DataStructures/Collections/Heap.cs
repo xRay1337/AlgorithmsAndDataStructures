@@ -49,7 +49,7 @@ namespace DataStructures.Collections
             AddRangeItems(rangeItems);
         }
 
-        public Heap(Heap<T> heap) : this(heap.ToArray(), heap.Sort){}
+        public Heap(Heap<T> heap) : this(heap.ToArray(), heap.Sort) { }
 
         public void AddItem(T item)
         {
@@ -153,9 +153,14 @@ namespace DataStructures.Collections
         public override string ToString() => string.Join(", ", _data);
 
         public override bool Equals(object? obj)
-            => Count == (obj as Heap<T>)?.Count
-            && _data.ToArray().Except((obj as Heap<T>)?.ToArray()).Count() == 0
+        {
+            var o = obj as Heap<T>;
+
+            if (o is null || o.Count != Count) return false;
+
+            return _data.ToArray().Except((obj as Heap<T>)?.ToArray()).Count() == 0
             && (obj as Heap<T>)?.ToArray().Except(_data.ToArray()).Count() == 0;
+        }
 
         public override int GetHashCode()
             => _data.Select(x => x.GetHashCode() * 47).Sum();
