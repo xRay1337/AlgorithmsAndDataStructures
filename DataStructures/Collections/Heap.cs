@@ -154,12 +154,12 @@ namespace DataStructures.Collections
 
         public override bool Equals(object? obj)
         {
-            var o = obj as Heap<T>;
+            Heap<T>? heap = obj as Heap<T>;
 
-            if (o is null || o.Count != Count) return false;
+            if (heap is null || heap.Count != Count) return false;
 
-            return _data.ToArray().Except((obj as Heap<T>)?.ToArray()).Count() == 0
-            && (obj as Heap<T>)?.ToArray().Except(_data.ToArray()).Count() == 0;
+            return _data.ToArray().Except(heap.ToArray()).Count() == 0
+                && heap.ToArray().Except(_data.ToArray()).Count() == 0;
         }
 
         public override int GetHashCode()
