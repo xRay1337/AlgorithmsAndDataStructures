@@ -152,11 +152,12 @@ namespace DataStructures.Collections
 
         public override string ToString() => string.Join(", ", _data);
 
-        public override int GetHashCode() => _data.GetHashCode();
-
         public override bool Equals(object? obj)
             => Count == (obj as Heap<T>)?.Count
             && _data.ToArray().Except((obj as Heap<T>)?.ToArray()).Count() == 0
             && (obj as Heap<T>)?.ToArray().Except(_data.ToArray()).Count() == 0;
+
+        public override int GetHashCode()
+            => _data.Select(x => x.GetHashCode() * 47).Sum();
     }
 }
